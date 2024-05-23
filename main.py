@@ -34,10 +34,10 @@ while game_is_on:
         score.increase()
 
     #Detect Collision w/ Wall
-    if (snake.head.xcor() > WALL_BOUNDARY or snake.head.xcor() < 0 - WALL_BOUNDARY or snake.head.ycor() > WALL_BOUNDARY
-            or snake.head.ycor() < 0 - WALL_BOUNDARY):
-        score.game_over()
-        game_is_on = False
+    for segment in snake.segments[1:]:
+        if snake.head.distance(segment) < 10:
+            game_is_on = False
+            score.game_over()
 
     # #Detect collision w/ Tail
     #
